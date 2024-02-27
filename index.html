@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,8 +7,9 @@
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>  
       <!-- mi js -->
       <script src="JS/javaScriptForm.js"></script>
+      <script src="JS/funciones.js"></script>
        <!-- iconos -->
-    <link rel="stylesheet" href="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"> 
       <!-- css bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
@@ -17,7 +18,18 @@
     <title>Document</title>
 </head>
 <body>
+<div class="container">
 
+    <header>
+        <!-- DONDE ENCONTRAR LOS ICONOS :
+         https://fontawesome.com/search?q=ref&o=r&m=free -->
+      <button>imagen estadistica</button>  <h5>titulo centrado</h5><button><i class="fa-solid fa-arrows-rotate"></i></button><button>imagen instrucciones</button>
+    </header>
+    <!-- Cuadricula dinámica con js -->
+    <main class="container" id="cuadricula"></main>
+
+    <h1>teclado</h1>
+</div>
 
      <!-- *******************************Formulario -->
      <div id="contenedorFormulario" class="container">
@@ -26,9 +38,9 @@
                 <h1 class="text-center">Formulario de inicio</h1>
             </div>
             <div class="card-body" >
-                <form >         
+                <form >        
                     <!-- Campo de nombre     -->      
-                    <div class="mb-3">
+                   <div class="mb-3">
                         <label for="fname" class="form-label">Nombre:</label>
                         <input type="text" class="form-control" id="fname" name="fname" placeholder="Escribe tu nombre aquí" autocomplete="on" required>
                     </div>
