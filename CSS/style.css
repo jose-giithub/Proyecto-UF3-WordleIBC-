@@ -1,0 +1,9 @@
+
+body{
+ background-color: bisque;
+}
+/* ESTILOS FORMULARIO */
+#formulario{
+max-width: 400px;
+background-color:  rgb(189, 194, 142);;
+}
