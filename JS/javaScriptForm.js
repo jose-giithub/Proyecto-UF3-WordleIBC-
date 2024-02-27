@@ -11,6 +11,10 @@ let telefono;
 let botonFormulario;
 let textoAlerta;
 let formValid = false;
+//VARIABLES TECLADO
+let teclaPresionada;
+//teclado virutal
+let teclavirutal;
 
 /********Libreria con los datos del uer */
 var datosUser = {
@@ -22,6 +26,7 @@ var datosUser = {
 
 
 window.addEventListener("DOMContentLoaded", function () {
+
   /***************CAPTURAR ELEMENTOS */
   contenedorFolrulario = $("#contenedorFormulario");
   nombreFormulario = $("#fname");
@@ -32,6 +37,16 @@ window.addEventListener("DOMContentLoaded", function () {
   //oculto el campo
   textoAlerta.hide();
   botonFormulario = $("#botonFormulario");
+
+ //capturo los botones virtuales
+ let buttonsVirtuales = document.querySelectorAll('.btn.btn-secondary.m-1');
+ buttonsVirtuales.forEach(function(button) {
+     button.addEventListener('click', function() {
+         let letra = button.textContent; // Aquí capturas el texto del botón
+         manejarEntrada(letra); // Suponiendo que tienes una función manejarEntrada para manejar tanto teclado físico como virtual
+     });
+ });
+
 
    //CUADRICULA DINÁMICA
   //capturar el contenedor donde ira la cuadricula
@@ -55,14 +70,15 @@ window.addEventListener("DOMContentLoaded", function () {
   }
   window.addEventListener("keydown", function (event) {//evento keydown
     let teclaPresionada = teclasPresionada(event);//guarda la letra presionada lla función teclasPresionada desde donde se captura la tecla
+   
     //añado la letra al div amarillo
-  
   });
+ 
   
 
   botonFormulario.click(function (event) {
     //evento onclick .trim();
-    event.preventDefault(); //Para que se carge el formulario sea como sea
+    event.preventDefault(); //Para que se cargue el formulario sea como sea
     //cuando retorne true se oculta el formulario
     if (validarForm(nombreFormulario)) {
       contenedorFolrulario.hide();

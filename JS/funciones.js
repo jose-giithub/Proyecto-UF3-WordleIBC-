@@ -1,19 +1,35 @@
+// Función para manejar el evento de clic en cada tecla
+function manejarEntrada(letraVirtual) {
+    console.log("Tecla presionada:", letraVirtual);
+    return letraVirtual;
+    // Aquí añades la lógica para manejar la entrada del teclado en pantalla
+  }
+
+ 
 /**
- * Capturar teclasdo
+ * Capturar teclado
  * @param {*} event 
  * @returns 
  */
 function teclasPresionada(event) {//recive el evento keydown
+   
     let teclaPresionada = event.key;//Guardo la letra presionada
-     console.log("Tecla presionada: " + teclaPresionada);
      //Array con las letras validas
-     var letrasValidas = ['KeyA', 'KeyB', 'KeyC', 'KeyD', 'KeyE', 'KeyF', 'KeyG', 'KeyH', 'KeyI', 'KeyJ', 'KeyK', 'KeyL', 'KeyM', 'KeyN', 'KeyO', 'KeyP', 'KeyQ', 'KeyR', 'KeyS', 'KeyT', 'KeyV', 'KeyW', 'KeyY', 'KeyZ'];
-     if (letrasValidas.includes(event.code)) {//comparo si la letra presionada esta en el array de letras validas
-         return event.key ;
-     }else{
-         return null;
-     }
-   }
+    const letrasValidas = [
+        'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
+        'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
+        'Enter', 'Backspace', 'ñ'
+    ];
+    // Convertir a minúsculas para hacer la comparación y aceptar Enter y Backspace como están
+    if (letrasValidas.includes(teclaPresionada.toLowerCase()) || teclaPresionada === 'Enter' || teclaPresionada === 'Backspace') {
+       // console.log("Tecla válida presionada: " + event.key);
+       manejarEntrada(teclaPresionada); 
+       // return event.key;
+    } else {
+       // console.log("Tecla no válida presionada: " + event.key);
+        return null;
+    }
+}
 
    /**
     * Validar formulario
@@ -26,9 +42,9 @@ function teclasPresionada(event) {//recive el evento keydown
     nombre.trim();
     //********VALIDAR CAMPO NOMBRE */
     if (nombre == "") {
-      //si esta vacio
+      //si esta vació
       console.log("Nombre vacio");
-      //muestrame el mensaje de error
+      //muéstrame el mensaje de error
       textoAlerta.slideDown(700);
     }
     setTimeout(function () {
@@ -41,7 +57,7 @@ function teclasPresionada(event) {//recive el evento keydown
     //********VALIDAR CAMPO TELÉFONO */
   
     if (nombre != "") {
-      // tidos los campos están bien
+      // todo los campos están bien
       return true;
     }
   }

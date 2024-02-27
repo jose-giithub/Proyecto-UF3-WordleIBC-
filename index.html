@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Jquery -->
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>  
-      <!-- mi js -->
+    <!-- js bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script> 
+    <!-- mi js -->
       <script src="JS/javaScriptForm.js"></script>
       <script src="JS/funciones.js"></script>
        <!-- iconos -->
@@ -23,12 +25,50 @@
     <header>
         <!-- DONDE ENCONTRAR LOS ICONOS :
          https://fontawesome.com/search?q=ref&o=r&m=free -->
-      <button>imagen estadistica</button>  <h5>titulo centrado</h5><button><i class="fa-solid fa-arrows-rotate"></i></button><button>imagen instrucciones</button>
+      <button>imagen estadística</button>  <h5>titulo centrado</h5><button><i class="fa-solid fa-arrows-rotate"></i></button><button>imagen instrucciones</button>
     </header>
     <!-- Cuadricula dinámica con js -->
-    <main class="container" id="cuadricula"></main>
+    <main  class="container" id="cuadricula"></main>
 
-    <h1>teclado</h1>
+    <div class="container">
+        <div id="tecladoVirtual" class="keyboard">
+            <div class="row">
+                <!-- teclas -->
+                <button class="btn btn-secondary m-1">Q</button>
+                <button class="btn btn-secondary m-1" >W</button>
+                <button class="btn btn-secondary m-1">E</button>
+                <button class="btn btn-secondary m-1" >R</button>
+                <button class="btn btn-secondary m-1">T</button>
+                <button class="btn btn-secondary m-1" >Y</button>
+                <button class="btn btn-secondary m-1" >U</button>
+                <button class="btn btn-secondary m-1" >I</button>
+                <button class="btn btn-secondary m-1" >O</button>
+                <button class="btn btn-secondary m-1" >P</button>
+                <button class="btn btn-secondary m-1" >A</button>
+                <button class="btn btn-secondary m-1" >S</button>
+                <button class="btn btn-secondary m-1" >D</button>
+                <button class="btn btn-secondary m-1" >F</button>
+                <button class="btn btn-secondary m-1">G</button>
+                <button class="btn btn-secondary m-1" >H</button>
+                <button class="btn btn-secondary m-1" >J</button>
+                <button class="btn btn-secondary m-1" >K</button>
+                <button class="btn btn-secondary m-1">L</button>
+                <button class="btn btn-secondary m-1">Ñ</button>
+                <button class="btn btn-secondary m-1" >Z</button>
+                <button class="btn btn-secondary m-1">X</button>
+                <button class="btn btn-secondary m-1" >C</button>
+                <button class="btn btn-secondary m-1" >V</button>
+                <button class="btn btn-secondary m-1" >B</button>
+                <button class="btn btn-secondary m-1" >N</button>
+                <button class="btn btn-secondary m-1" >M</button>
+                <button class="btn btn-secondary m-1" >Enter</button>
+                <button class="btn btn-secondary m-1" >Backspace</button>
+                
+                <!-- Agrega más botones para las demás letras -->
+            </div>
+            <!-- Agrega más filas según necesites -->
+        </div>
+    </div>
 </div>
 
      <!-- *******************************Formulario -->
@@ -59,7 +99,7 @@
                      <!-- Campo de Teléfono -->
                    <!-- <div class="mb-3">
                         <label for="telefono" class="form-label">Teléfono:</label>
-                        <input type="tel" class="form-control" id="telefono" name="telefono" placeholder="Ingrese su número de teléfono" required>
+                        <input type="tel" class="form-control" id="telefono" name="teléfono" placeholder="Ingrese su número de teléfono" required>
                     </div>  -->
                     <!-- si algo esta mal sale  -->
                    <div id="infoerror" class="info">
@@ -73,7 +113,7 @@
                 </form>
             </div>
         </div> 
-        <!-- Aqui se muestra el nombre  -->
+        <!-- Aquí se muestra el nombre  -->
        <!-- <div id="mostrarNom">
             <span id="nombreUsuario"></span>
              <span id="apellidosUsuario"></span>
