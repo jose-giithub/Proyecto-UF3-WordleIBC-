@@ -1,11 +1,23 @@
+
 // Función para manejar el evento de clic en cada tecla
 function manejarEntrada(letraVirtual) {
     console.log("Tecla presionada:", letraVirtual);
-    return letraVirtual;
-    // Aquí añades la lógica para manejar la entrada del teclado en pantalla
-  }
+    let inputActual = document.getElementById("input" + indiceActual);
+   if (letraVirtual !== "Enter" && letraVirtual !== "Backspace") {
+    if (inputActual) {
+        inputActual.value = letraVirtual; 
+        indiceActual++; 
+    }
+    if (letraVirtual == "Backspace") {
+        //elminar la letra
+        inputActual.remove();;
+    }
+    
+   }
+    
+}
+   
 
- 
 /**
  * Capturar teclado
  * @param {*} event 

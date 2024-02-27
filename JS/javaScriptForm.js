@@ -1,7 +1,7 @@
 //**************VARIABLES GLOBALES */
 //VARIABLE CUADRICULA
-const arrayRows = 5;
-const arrayColums = 6;
+const arrayRows = 6;
+const arrayColums = 5;
 //VARIABLE FORMULARIO
 let contenedorFolrulario;
 let nombreFormulario;
@@ -15,6 +15,7 @@ let formValid = false;
 let teclaPresionada;
 //teclado virutal
 let teclavirutal;
+let indiceActual = 1;
 
 /********Libreria con los datos del uer */
 var datosUser = {
@@ -52,22 +53,33 @@ window.addEventListener("DOMContentLoaded", function () {
   //capturar el contenedor donde ira la cuadricula
   let cuadricula = document.getElementById("cuadricula");
   //recorremos las rows
-  for (let row = 0; row < arrayRows; row++) {
+  for (let row = 0; row < arrayColums; row++) {
     let divs = document.createElement("div"); //creamos divs
     divs.id = "row" + (row + 1); //le añadimos id
     //recorremos las colums
-    for (let col = 0; col < arrayColums; col++) {
-      let input = document.createElement("input"); //creamos input
+    for (let col = 0; col < arrayRows; col++) {
+      let input = document.createElement("input"); //creamos input  arrayColums
       input.type = "text";
       input.maxLength = "1"; //máximo de letras dentro de cada input
       input.className = "cuadrado"; //le atizamos una clase común a todas
-      input.id = "input" + (row * arrayRows + (col + 1)); //añadimos id
+      input.id = "input" + (col * arrayColums + (row + 1)); //añadimos id
       //añadimos dentro de los divs que hemos creado al inicio del form row los input
       divs.appendChild(input);
     }
     //dentro del contenedor capturado del html atizamos los divs con los input dentro
     cuadricula.appendChild(divs);
   }
+//captuiro la cuadricula
+  // let inputs = document.querySelectorAll("input");
+  // //recorro los inputs
+  // inputs.forEach(function (input) {
+  //   //capturo el indice el input presionado
+  //   input.addEventListener("click", function (event) {
+  //     let indice = event.target.id;
+  //     console.log(indice);
+  //   });
+  // });
+
   window.addEventListener("keydown", function (event) {//evento keydown
     let teclaPresionada = teclasPresionada(event);//guarda la letra presionada lla función teclasPresionada desde donde se captura la tecla
    
