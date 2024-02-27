@@ -7,6 +7,23 @@ body{
 max-width: 400px;
 background-color:  rgb(189, 194, 142);;
 }
+/* Estilo para el contenedor del formulario */
+#contenedorFormulario {
+  z-index: 9999; /* Por encima de todas las capas */
+}
+
+/* Estilo para centrar el formulario */
+.translate-middle {
+  transform: translate(-50%, -50%);
+}
+
+/* Estilos para hacer el formulario responsive */
+@media (max-width: 768px) {
+  #contenedorFormulario {
+      width: 90%; /* Ancho del formulario al 90% en dispositivos pequeños */
+  }
+}
+
 
 /*ESTILO CUADRICULA DINÁMICA */
 #cuadricula {
