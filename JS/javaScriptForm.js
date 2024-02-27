@@ -62,6 +62,8 @@ window.addEventListener("DOMContentLoaded", function () {
       input.type = "text";
       input.maxLength = "1"; //máximo de letras dentro de cada input
       input.className = "cuadrado"; //le atizamos una clase común a todas
+      input.type = "text"; //le añadimos el tipo text
+      input.disabled = true;  //desactivamos los inputs
       input.id = "input" + (col * arrayColums + (row + 1)); //añadimos id
       //añadimos dentro de los divs que hemos creado al inicio del form row los input
       divs.appendChild(input);
@@ -69,21 +71,10 @@ window.addEventListener("DOMContentLoaded", function () {
     //dentro del contenedor capturado del html atizamos los divs con los input dentro
     cuadricula.appendChild(divs);
   }
-//captuiro la cuadricula
-  // let inputs = document.querySelectorAll("input");
-  // //recorro los inputs
-  // inputs.forEach(function (input) {
-  //   //capturo el indice el input presionado
-  //   input.addEventListener("click", function (event) {
-  //     let indice = event.target.id;
-  //     console.log(indice);
-  //   });
-  // });
+
 
   window.addEventListener("keydown", function (event) {//evento keydown
     let teclaPresionada = teclasPresionada(event);//guarda la letra presionada lla función teclasPresionada desde donde se captura la tecla
-   
-    //añado la letra al div amarillo
   });
  
   
