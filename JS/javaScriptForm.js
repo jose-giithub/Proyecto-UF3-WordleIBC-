@@ -13,9 +13,10 @@ let textoAlerta;
 let formValid = false;
 //VARIABLES TECLADO
 let teclaPresionada;
-//teclado virutal
-let teclavirutal;
+// variable para recoger el indice del input donde se escribe
 let indiceActual = 1;
+//controlador para que solo se pueda escribir en una sola libia hasta verificar la palabra
+let liniaCompleta = false;
 
 /********Libreria con los datos del uer */
 var datosUser = {
@@ -39,14 +40,6 @@ window.addEventListener("DOMContentLoaded", function () {
   textoAlerta.hide();
   botonFormulario = $("#botonFormulario");
 
- //capturo los botones virtuales
- let buttonsVirtuales = document.querySelectorAll('.btn.btn-secondary.m-1');
- buttonsVirtuales.forEach(function(button) {
-     button.addEventListener('click', function() {
-         let letra = button.textContent; // Aquí capturas el texto del botón
-         manejarEntrada(letra); // Suponiendo que tienes una función manejarEntrada para manejar tanto teclado físico como virtual
-     });
- });
 
 
    //CUADRICULA DINÁMICA
@@ -73,11 +66,21 @@ window.addEventListener("DOMContentLoaded", function () {
   }
 
 
+ //capturo los botones virtuales
+ let buttonsVirtuales = document.querySelectorAll('.btn.btn-secondary.m-1');
+ buttonsVirtuales.forEach(function(button) {
+     button.addEventListener('click', function() {
+         let letra = button.id; // Aquí capturas el texto del botón
+         manejarEntrada(letra); // Suponiendo que tienes una función manejarEntrada para manejar tanto teclado físico como virtual
+     });
+ });
+ //capturar teclado normal
   window.addEventListener("keydown", function (event) {//evento keydown
     let teclaPresionada = teclasPresionada(event);//guarda la letra presionada lla función teclasPresionada desde donde se captura la tecla
   });
  
-  
+ 
+
 
   botonFormulario.click(function (event) {
     //evento onclick .trim();
