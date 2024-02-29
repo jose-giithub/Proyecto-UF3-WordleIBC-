@@ -26,40 +26,6 @@ background-color:  rgb(189, 194, 142);;
 
 
 
-/* Estilos personalizados */
-
-        /* Estilos para los botones del navbar */
-        .navbar-nav .nav-link {
-          color: #007bff; /* Color del texto */
-          border: 1px solid #007bff; /* Borde */
-          border-radius: 5px; /* Borde redondeado */
-          padding: 8px 16px; /* Espaciado interno */
-          margin-right: 5px; /* Margen derecho entre botones */
-          background-color: transparent; /* Fondo transparente */
-      }
-
-      .navbar-nav .nav-link:hover {
-          background-color: #007bff; /* Fondo al pasar el ratón */
-          color: #fff; /* Color del texto al pasar el ratón */
-      }
-
-      /* Estilos para el título centrado */
-      .navbar-brand {
-          flex-grow: 1; /* Para que el título ocupe el espacio restante */
-          text-align: center; /* Centrado del texto */
-      }
-
-      /* Estilos para el botón de estadísticas */
-      .estadisticas-btn {
-          float: left; /* Alineación a la izquierda */
-      }
-
-      /* Estilos para el botón de instrucciones */
-      .instrucciones-btn {
-          float: right; /* Alineación a la derecha */
-      }
-
-
 /*ESTILO CUADRICULA DINÁMICA */
 #cuadricula {
     display: flex;
