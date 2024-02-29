@@ -105,9 +105,9 @@ const validarForm = () => {
 
   // Validar teléfono con expresión regular
   let telefonoValor = telefono.val().trim();
-  const telefonoRegex = /^\d{10}$/; // Expresión regular para validar un número de teléfono de 10 dígitos
+  const telefonoRegex = /^\d{9}$/; // Expresión regular para validar un número de teléfono de 10 dígitos
   if (!telefonoRegex.test(telefonoValor)) {
-    textoAlertaTelefono.text("Por favor, introduce un número de teléfono válido (10 dígitos).");
+    textoAlertaTelefono.text("Por favor, introduce un número de teléfono válido (9 dígitos).");
     return false;
   } else {
     textoAlertaTelefono.text("");

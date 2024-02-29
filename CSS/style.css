@@ -43,3 +43,84 @@ background-color:  rgb(189, 194, 142);;
     color: #000;
   }
   /*FINAL ESTILO CUADRICULA DINÁMICA */
+  /* ESTILOS INSTRUCCIONES  */
+  .instructions-card {
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    max-width: 400px;
+    margin: auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+}
+
+.close-button {
+    float: right;
+    cursor: pointer;
+}
+
+.title {
+    text-align: center;
+    font-size: 24px;
+    margin: 10px 0;
+    color: #333;
+    font-weight: bold;
+}
+
+.color-explanation {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.color-box {
+    width: 30px;
+    height: 30px;
+    display: inline-block;
+    margin-right: 10px;
+    font-size: 20px;
+    text-align: center;
+    line-height: 30px;
+    color: white;
+}
+
+.color-box.green {
+    background-color: #31a322;
+}
+
+.color-box.yellow {
+    background-color: #9f8822;
+}
+
+.color-box.grey {
+    background-color: #f3f3f3;
+    color: black;
+}
+
+.play-button {
+    background-color: #31a322;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    display: block;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.play-button:hover {
+    background-color: #259a22;
+}
+
+.instructions-link {
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+    color: #0000EE;
+    text-decoration: none;
+}
+
+.instructions-link:hover {
+    text-decoration: underline;
+}
