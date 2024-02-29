@@ -1,30 +1,63 @@
-//desactivo los inputs.
-//cuando llega al input no se podra escribir mas
-function invalidarInput() {}
-let palabra = '';
+
+
+function validarPalabra() { //abaca curen
+  console.log("palabra", palabra , 'palabra aleatoria' , palabraAleatoria);
+ 
+   if (dic.includes(palabra) && palabra === palabraAleatoria) {
+    console.log("existe y es igual" );
+  } else if (dic.includes(palabra)) {
+    console.log("existe" );
+  } else{
+    console.log("no existe");
+  }
+
+  
+}
+
+
+
 // Función para manejar el evento de clic en cada tecla
 function manejarEntrada(letraVirtual) {
-  console.log("Tecla válida presionada: " + letraVirtual);
-  //se se presiona enter llamo a la función validarPalabra
-  if (letraVirtual === "Enter") {
+  //  console.log("Tecla válida presionada: " + letraVirtual);
+  //capturo el input actual
+  inputActual = document.getElementById("input" + indiceActual);
+  
+  //**************se se presiona enter 
+  //si ademas de presionar enter el indice es 6 se pasa a la siguiente linea y se desactivan los inputs 1 ,2,3,4,5
+  if (letraVirtual === "Enter" && indiceActual === 6) {
+    //desactivo los inputs
+    for (let i = 1; i <= 5; i++) {
+      let input = document.getElementById("input" + i);
+      input.disabled = true;
+    }
+
     //calor de la letra
-if (palabra != null) {
-    validarPalabra(palabra);
+    console.log('*********pasar a la siguiente linea' ,indiceActual );
+     
+  } else if (letraVirtual === "Enter") {
+    console.log('*********Valido sin pasar  a la siguiente linea' ,indiceActual );
+     validarPalabra(palabra);
   }
-  }
+
+
   //si se presiona Backspace borro el valor del input
   if (letraVirtual === "Backspace") {
-    //console.log("Backspace");
+    // let inputActualBobrrar = document.getElementById("input" + indiceActual);
     // asegurar que no esté en el primer índice
     if (indiceActual > 1) {
       indiceActual--; // Mueve hacia atrás el índice para Backspace el valor del input anterior
       //capturo el input actual y le quito una posición
       let inputAnterior = document.getElementById("input" + indiceActual);
+      //elimino la letra de la palabra
+      palabra = palabra.slice(0, -1);
+      console.log(palabra, "*****borro el valor del input");
+
       //si no esta vacio lo borro
-      if ( inputAnterior.value != "") {//inputAnterior &&
-         //para que se pueda Backspace
-         inputAnterior.disabled = true;
-         inputAnterior.value = ""; // Limpia el valor del input anterior si no está vacío
+      if (inputAnterior.value != "") {
+        //inputAnterior &&
+        //para que se pueda Backspace
+        inputAnterior.disabled = true;
+        inputAnterior.value = ""; // Limpia el valor del input anterior si no está vacío
       }
     }
     //si indice es 5 o menor activo los inputs
@@ -40,11 +73,9 @@ if (palabra != null) {
   }
   //si no esta completa la linia permito añadir letras
   if (!liniaCompleta) {
-    //capturo el input actual
-    let inputActual = document.getElementById("input" + indiceActual);
-    console.log("num input:", indiceActual);
+    // console.log("num input:", indiceActual);
 
-    //si el input actual no es enter o Backspace añado el valor al input
+    //si el input actual no es enter o Backspace añado el valor al input --> la letra
     if (letraVirtual !== "Enter" && letraVirtual !== "Backspace") {
       if (inputActual) {
         inputActual.value = letraVirtual;
@@ -53,20 +84,9 @@ if (palabra != null) {
       }
     }
   }
-  
 }
 
-function validarPalabra() {
-  console.log('palabra' ,palabra);
-if (dic.includes(palabra)) {
-   console.log('existe');
-} else{
-  console.log('no existe');
 
-}
- 
- 
-}
 
 /**
  * Capturar teclado
@@ -76,7 +96,7 @@ if (dic.includes(palabra)) {
 function teclasPresionada(event) {
   //recive el evento keydown
   let teclaPresionada = event.key; //Guardo la letra presionada
-  
+
   //Array con las letras validas
   const letrasValidas = [
     "a",
@@ -116,13 +136,20 @@ function teclasPresionada(event) {
     teclaPresionada === "Enter" ||
     teclaPresionada === "Backspace"
   ) {
- console.log("Tecla válida presionada: " + event.key);
+    console.log("Tecla válida presionada: " + event.key);
     manejarEntrada(teclaPresionada);
     // return event.key;
   } else {
     // console.log("Tecla no válida presionada: " + event.key);
     return null;
   }
+}
+
+
+function numeroAleatorio() {
+  let numeroAleatorio = Math.random();
+  let numeroFinal = Math.floor(numeroAleatorio * 11033);
+  return numeroFinal;
 }
 
 /**
@@ -154,4 +181,6 @@ function validarForm(nombreFormulario) {
     // todo los campos están bien
     return true;
   }
-}
+};
+
+

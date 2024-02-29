@@ -21,37 +21,38 @@
     <title>Document</title>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <!-- Contenedor fluido para la barra de navegación, se usa para un ancho completo -->
-              <div class="container-fluid">
-       <!-- Marca o título de la barra de navegación, generalmente contiene el nombre o logo de la página -->
-                <a class="navbar-brand" href="#">TITULO</a>
-       <!-- Botón que se muestra para pantallas pequeñas, activa la navegación colapsable -->
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <!-- Icono del botón que se muestra en pantallas pequeñas (icono de hamburguesa) -->
-                  <span class="navbar-toggler-icon"></span>
-                </button>
-       <!-- Contenido colapsable de la barra de navegación que se muestra al hacer clic en el botón de navegación -->
-                <div class="collapse navbar-collapse" id="navbarNav">
-                  <!-- Lista de elementos de navegación -->
-                  <ul class="navbar-nav">
-                    <!-- Elemento de navegación individual, activo indica la página actual -->
-                    <li class="nav-item">
-                      <a class="nav-link active" aria-current="page" href="#">Inicio</a>
-                    </li>
-                    <!-- Otro elemento de navegación -->
-                    <li class="nav-item">
-                      <a class="nav-link" href="#">Ejemplo 1</a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </nav>
+    
 <div class="container">
 
     <header>
         <!-- DONDE ENCONTRAR LOS ICONOS :
          https://fontawesome.com/search?q=ref&o=r&m=free -->
+         <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <!-- Contenedor fluido para la barra de navegación, se usa para un ancho completo -->
+                <div class="container-fluid">
+         <!-- Marca o título de la barra de navegación, generalmente contiene el nombre o logo de la página -->
+                  <a class="navbar-brand" href="#">TITULO</a>
+         <!-- Botón que se muestra para pantallas pequeñas, activa la navegación colapsable -->
+                  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <!-- Icono del botón que se muestra en pantallas pequeñas (icono de hamburguesa) -->
+                    <span class="navbar-toggler-icon"></span>
+                  </button>
+         <!-- Contenido colapsable de la barra de navegación que se muestra al hacer clic en el botón de navegación -->
+                  <div class="collapse navbar-collapse" id="navbarNav">
+                    <!-- Lista de elementos de navegación -->
+                    <ul class="navbar-nav">
+                      <!-- Elemento de navegación individual, activo indica la página actual -->
+                      <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Inicio</a>
+                      </li>
+                      <!-- Otro elemento de navegación -->
+                      <li class="nav-item">
+                        <a class="nav-link" href="#">Ejemplo 1</a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </nav>
       <button>imagen estadística</button>  <h5>titulo centrado</h5><button><i class="fa-solid fa-arrows-rotate"></i></button><button>imagen instrucciones</button>
     </header>
     <!-- Cuadricula dinámica con js -->
@@ -102,53 +103,61 @@
 </div>
 
      <!-- *******************************Formulario -->
-     <div id="contenedorFormulario" class="container">
-        <div class="card mx-auto my-5"  id="formulario">
-            <div class="card-header" >
-                <h1 class="text-center">Formulario de inicio</h1>
-            </div>
-            <div class="card-body" >
-                <form >        
-                    <!-- Campo de nombre     -->      
-                   <div class="mb-3">
-                        <label for="fname" class="form-label">Nombre:</label>
-                        <input type="text" class="form-control" id="fname" name="fname" placeholder="Escribe tu nombre aquí" autocomplete="on" required>
-                    </div>
-                    <!-- Campo de Apellidos -->
-                     <!-- <div class="mb-3">
-                        <label for="apellidos" class="form-label">Apellidos:</label>
-                        <input type="text" class="form-control" id="apellidos" name="apellidos" placeholder="Ingrese sus apellidos" required>
-                    </div>  -->
+     <div id="contenedorFormulario" class="position-fixed top-50 start-50 translate-middle">
+      <div class="card mx-auto my-5" id="formulario">
+          <div class="card-header">
+              <h1 class="text-center">Formulario de inicio</h1>
+          </div>
+          <div class="card-body">
+              <form>
+                  <!-- Campo de nombre     -->
+                  <div class="mb-3">
+                      <label for="fname" class="form-label">Nombre:</label>
+                      <input type="text" class="form-control" id="fname" name="fname"
+                          placeholder="Escribe tu nombre aquí" autocomplete="on" required>
+                      <p id="textoAlertaNombre" style="color: red;"></p>
+                  </div>
+                  <!-- Campo de Apellidos -->
+                  <div class="mb-3">
+                      <label for="apellidos" class="form-label">Apellidos:</label>
+                      <input type="text" class="form-control" id="apellidos" name="apellidos"
+                          placeholder="Ingrese sus apellidos" required>
+                      <p id="textoAlertaApellidos" style="color: red;"></p>
+                  </div>
 
-                     <!-- Campo de Correo -->
-                    <!-- <div class="mb-3">
-                        <label for="correo" class="form-label">Correo Electrónico:</label>
-                        <input type="email" class="form-control" id="correo" name="correo" placeholder="Ingrese su correo electrónico" required>
-                    </div>  -->
+                  <!-- Campo de Correo -->
+                  <div class="mb-3">
+                      <label for="correo" class="form-label">Correo Electrónico:</label>
+                      <input type="email" class="form-control" id="correo" name="correo"
+                          placeholder="Ingrese su correo electrónico" required>
+                      <p id="textoAlertaCorreo" style="color: red;"></p>
+                  </div>
 
-                     <!-- Campo de Teléfono -->
-                   <!-- <div class="mb-3">
-                        <label for="telefono" class="form-label">Teléfono:</label>
-                        <input type="tel" class="form-control" id="telefono" name="teléfono" placeholder="Ingrese su número de teléfono" required>
-                    </div>  -->
-                    <!-- si algo esta mal sale  -->
-                   <div id="infoerror" class="info">
-                        <span id="formErrorSpam">
-                        <p id="textoAlerta" style="color: red;">Tienes algún campo es erróneo</p>
-                        </span>
-                </div>
-                    <button id="botonFormulario"  class="btn btn-primary btn-block"
-                        value="Validar">Enviar
-                    </button>
-                </form>
-            </div>
-        </div> 
-        <!-- Aquí se muestra el nombre  -->
-       <!-- <div id="mostrarNom">
-            <span id="nombreUsuario"></span>
-             <span id="apellidosUsuario"></span>
-        </div>  -->
-        <!-- Fin formulario -->
+                  <!-- Campo de Teléfono -->
+                  <div class="mb-3">
+                      <label for="telefono" class="form-label">Teléfono:</label>
+                      <input type="tel" class="form-control" id="telefono" name="telefono"
+                          placeholder="Ingrese su número de teléfono" required>
+                      <p id="textoAlertaTelefono" style="color: red;"></p>
+                  </div>
+
+                  <!-- si algo esta mal sale  -->
+                  <div id="infoerror" class="info">
+                      <span id="formErrorSpam">
+                          <p id="textoAlerta" style="color: red;">Tienes algún campo es erróneo</p>
+                      </span>
+                  </div>
+                  <button id="botonFormulario" class="btn btn-primary btn-block" value="Validar">Enviar
+                  </button>
+              </form>
+          </div>
+      </div>
+      <!-- Aqui se muestra el nombre  -->
+      <!-- <div id="mostrarNom">
+      <span id="nombreUsuario"></span>
+       <span id="apellidosUsuario"></span>
+  </div>  -->
+      <!-- Fin formulario -->
     
 </body>
 </html>
