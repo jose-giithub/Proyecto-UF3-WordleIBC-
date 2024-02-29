@@ -17,7 +17,13 @@ let teclaPresionada;
 let indiceActual = 1;
 //controlador para que solo se pueda escribir en una sola libia hasta verificar la palabra
 let liniaCompleta = false;
-
+//palabra aleatorio 
+let numAleatorio;
+let palabraAleatoria;
+//Guardar todas las letras que se escriben
+let palabra = "";
+//para la función manejarEntrada()
+let inputActual;
 /********Libreria con los datos del uer */
 var datosUser = {
   nombreFormulario: "",
@@ -28,7 +34,10 @@ var datosUser = {
 
 
 window.addEventListener("DOMContentLoaded", function () {
-
+  //selecciono un apalabra aleatoria
+   numAleatorio  = numeroAleatorio();
+ palabraAleatoria =dic[numAleatorio];
+console.log("palabra aleatoria", palabraAleatoria);
   /***************CAPTURAR ELEMENTOS */
   contenedorFolrulario = $("#contenedorFormulario");
   nombreFormulario = $("#fname");
