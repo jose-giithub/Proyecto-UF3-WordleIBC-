@@ -32,6 +32,9 @@ window.addEventListener("DOMContentLoaded", function () {
   const correo = $("#correo");
   const telefono = $("#telefono");
   const botonFormulario = $("#botonFormulario");
+  const botonEstadisticas = $("#botonEstadisticas");
+  const botonReiniciar = $("#botonReiniciar");
+  const botonInstrucciones = $("#botonInstrucciones");
   const textoAlerta = $("#textoAlerta");
   const textoAlertaNombre = $("#textoAlertaNombre");
   const textoAlertaApellidos = $("#textoAlertaApellidos");
@@ -62,8 +65,13 @@ window.addEventListener("DOMContentLoaded", function () {
   botonFormulario.click(function (event) {
     event.preventDefault(); // Evitar envío automático del formulario
     if (validarForm()) { // Llamar a la función de validación
-      // Guardar en localStorage que el formulario se ha completado
+      // Guardar datos del usuario en localStorage
       localStorage.setItem("formularioCompletado", true);
+      localStorage.setItem("nombre", nombreFormulario.val().trim());
+      localStorage.setItem("apellidos", apellidos.val().trim());
+      localStorage.setItem("correo", correo.val().trim());
+      localStorage.setItem("telefono", telefono.val().trim());
+
       contenedorFormulario.hide(); // Ocultar el formulario si la validación es exitosa
       container.show(); // Mostrar el div container cuando el formulario se oculta
       generarCuadricula();
@@ -123,6 +131,7 @@ const validarForm = () => {
   function generarCuadricula() {
     //capturar el contenedor donde ira la cuadricula
     let cuadricula = document.getElementById("cuadricula");
+    cuadricula.innerHTML = ""; //limpiamos el contenedor
     //recorremos las rows
     for (let row = 0; row < arrayColums; row++) {
       let divs = document.createElement("div"); //creamos divs
@@ -157,5 +166,73 @@ const validarForm = () => {
   window.addEventListener("keydown", function (event) {//evento keydown
     let teclaPresionada = teclasPresionada(event);//guarda la letra presionada lla función teclasPresionada desde donde se captura la tecla
   });
+
+  // INICIO PARTE DE POPUP INSTRUCCIONES
+botonInstrucciones.click(function() {
+  const popupInstrucciones = new Popup({
+    id: "color-info",
+    title: `<br>
+    PALABRA DEL DÍA`,
+    content: `<br><br><br><br>Las reglas son simples: adivina la palabra oculta en 6 intentos. Cada intento debe ser una palabra válida y si la palabra no existe el juego te avisará.
+    Después de cada intento el color de las casillas cambia para mostrar qué tan cerca estás de acertar la palabra.
+<div class="color-explanation"><div class="color-box green">D</div> VERDE significa que la letra está en la palabra y en la posición CORRECTA.</div>
+<div class="color-explanation"><div class="color-box yellow">A</div> AMARILLO significa que la letra está presente en la palabra pero en la posición INCORRECTA.</div>
+<div class="color-explanation"><div class="color-box grey">N</div> GRIS significa que la letra NO está presente en la palabra.</div>
+<p>¡Una palabra nueva cada día!</p>
+<button class="play-button">¡JUGAR!</button>
+<a href="https://lapalabradeldia.com/como-jugar/" class="instructions-link">Leer las instrucciones completas
+    del juego.</a>`,
+    titleColor: "#e1e1e1",
+    titleMargin: "40",
+    backgroundColor: "#383838",
+    textColor: "#fff",
+    fontSizeMultiplier: "0.6",
+});
+popupInstrucciones.show();
+});
+// FIN PARTE DE POPUP INSTRUCCIONES
+
+// INICIO PARTE DE POPUP ESTADÍSTICAS
+botonEstadisticas.click(function() {
+  const nombre = localStorage.getItem("nombre");
+  const apellidos = localStorage.getItem("apellidos");
+  const correo = localStorage.getItem("correo");
+  const telefono = localStorage.getItem("telefono");
+
+  const contenidoPopup = `
+    <br><br><br><br>
+    <p>Tu nombre: ${nombre}</p>
+    <p>Tus apellidos: ${apellidos}</p>
+    <p>Tu correo electrónico: ${correo}</p>
+    <p>Tu teléfono: ${telefono}</p>
+  `;
+
+  const popupEstadisticas = new Popup({
+    id: "color-info",
+    title: `<br>ESTADISTICAS`,
+    content: contenidoPopup,
+    titleColor: "#e1e1e1",
+    titleMargin: "40",
+    backgroundColor: "#383838",
+    textColor: "#fff",
+    fontSizeMultiplier: "0.6",
+  });
+
+  popupEstadisticas.show();
+});
+// FIN PARTE DE POPUP ESTADÍSTICAS
+
+// INICIO PARTE DE POPUP REINICIAR
+botonReiniciar.click(function() {
+  // Limpiar localStorage
+  localStorage.clear();
+
+  // Ocultar container y mostrar formulario
+  $(".container").hide();
+  $("#contenedorFormulario").show();
+});
+// FIN PARTE DE POPUP REINICIAR
+
+
 }); //final DOMContentLoaded
 
