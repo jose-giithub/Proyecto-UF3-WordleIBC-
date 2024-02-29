@@ -4,7 +4,7 @@ function validarPalabra() { //abaca curen
   console.log("palabra", palabra , 'palabra aleatoria' , palabraAleatoria);
  
    if (dic.includes(palabra) && palabra === palabraAleatoria) {
-    console.log("existe y es igual" ,);
+    console.log("existe y es igual" );
   } else if (dic.includes(palabra)) {
     console.log("existe" );
   } else{
@@ -22,8 +22,15 @@ function manejarEntrada(letraVirtual) {
   //capturo el input actual
   inputActual = document.getElementById("input" + indiceActual);
   
-  //se se presiona enter llamo a la función validarPalabra
+  //**************se se presiona enter 
+  //si ademas de presionar enter el indice es 6 se pasa a la siguiente linea y se desactivan los inputs 1 ,2,3,4,5
   if (letraVirtual === "Enter" && indiceActual === 6) {
+    //desactivo los inputs
+    for (let i = 1; i <= 5; i++) {
+      let input = document.getElementById("input" + i);
+      input.disabled = true;
+    }
+
     //calor de la letra
     console.log('*********pasar a la siguiente linea' ,indiceActual );
      
