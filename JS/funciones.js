@@ -72,6 +72,7 @@ function validarPalabra() {
  verificarLetras(palabra);
      prepararSiguienteFila();
   }
+  localStorage.setItem("intentos", intentos);
 }
 
 //verificar letras
@@ -121,6 +122,7 @@ function palabraCorrecta() {
       celdaActual.classList.add("perfect");
     }
   }
+  localStorage.setItem("partidasGanadas", partidasGanadas);
   // Desactivar la entrada de teclado
   desactivarEntradaTeclado();
 }

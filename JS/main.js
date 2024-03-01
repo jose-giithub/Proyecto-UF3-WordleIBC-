@@ -187,6 +187,13 @@ botonEstadisticas.click(function() {
   const apellidos = localStorage.getItem("apellidos");
   const correo = localStorage.getItem("correo");
   const telefono = localStorage.getItem("telefono");
+  const partidasJugadas = localStorage.getItem("partidasJugadas");
+  const partidasGanadas = localStorage.getItem("partidasGanadas");
+  const partidasPerdidas = localStorage.getItem("partidasPerdidas");
+  const porcentajeAciertos = localStorage.getItem("porcentajeAciertos");
+  const palabrasAdivinadas = localStorage.getItem("palabrasAdivinadas");
+  const palabrasFallidas = localStorage.getItem("palabrasFallidas");
+  const letrasAcertadas = localStorage.getItem("letrasAcertadas");
 
   const contenidoPopup = `
     <br><br><br><br>
@@ -194,6 +201,13 @@ botonEstadisticas.click(function() {
     <p>Tus apellidos: ${apellidos}</p>
     <p>Tu correo electrónico: ${correo}</p>
     <p>Tu teléfono: ${telefono}</p>
+    <p>Partidas jugadas: ${partidasJugadas}</p>
+    <p>Partidas ganadas: ${partidasGanadas}</p>
+    <p>Partidas perdidas: ${partidasPerdidas}</p>
+    <p>Porcentaje de aciertos: ${porcentajeAciertos}%</p>
+    <p>Palabras adivinadas: ${palabrasAdivinadas}</p>
+    <p>Palabras fallidas: ${palabrasFallidas}</p>
+    <p>Letras acertadas: ${letrasAcertadas}</p>
   `;
 
   const popupEstadisticas = new Popup({
@@ -214,7 +228,6 @@ botonEstadisticas.click(function() {
 // INICIO PARTE DE POPUP REINICIAR
 botonReiniciar.click(function() {
   // Limpiar localStorage
-  localStorage.clear();
   location.reload();
 
 
