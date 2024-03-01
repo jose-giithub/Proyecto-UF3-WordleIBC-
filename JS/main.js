@@ -213,6 +213,8 @@ botonEstadisticas.click(function() {
 botonReiniciar.click(function() {
   // Limpiar localStorage
   localStorage.clear();
+  location.reload();
+
 
   // Ocultar container y mostrar formulario
   $(".container").hide();

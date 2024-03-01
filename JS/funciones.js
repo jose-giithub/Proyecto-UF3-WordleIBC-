@@ -58,8 +58,9 @@ function validarPalabra() {
   } else {
     console.log("La palabra no existe en el diccionario.");
     window.alert("La palabra no existe")
+    verificarLetras(palabra);
     // Puedes optar por permitir al usuario intentarlo nuevamente sin avanzar de fila o forzar el avance de todos modos.
-    prepararSiguienteFila();
+   // prepararSiguienteFila();
   }
 }
 
@@ -77,6 +78,8 @@ function verificarLetras(palabraIngresada) {
     // Si la letra está en la palabra pero no en la posición correcta, la marcamos en amarillo
     else if (palabraAleatoria.includes(letra)) {
       celdaActual.classList.add("presente"); // Agrega clase para letra presente pero en posición incorrecta
+    } else {
+      celdaActual.classList.add("ausente");
     }
   }
 }
