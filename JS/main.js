@@ -1,17 +1,12 @@
 //**************VARIABLES GLOBALES */
 //VARIABLES TECLADO
 let teclaPresionada;
-// variable para recoger el indice del input donde se escribe
-let indiceActual = 1;
-//controlador para que solo se pueda escribir en una sola libia hasta verificar la palabra
-let liniaCompleta = false;
 //palabra aleatorio 
 let numAleatorio;
 let palabraAleatoria;
 //Guardar todas las letras que se escriben
 let palabra = "";
-//para la función manejarEntrada()
-let inputActual;
+
 /********Libreria con los datos del uer */
 var datosUser = {
   nombreFormulario: "",
@@ -20,11 +15,38 @@ var datosUser = {
   telefono: "",
 };
 
-
+// Variables para manejar la posición actual
+let filaActual = 1;
+let celdaActual = 1;
+let inputActual =1;
 window.addEventListener("DOMContentLoaded", function () {
-  // Variables globales
-  const arrayRows = 6;
-  const arrayColums = 5;
+
+  //capturo los botones virtuales
+document.querySelectorAll('.btn.btn-secondary.m-1').forEach(function (button) {
+  button.addEventListener('click', function () {
+    // El ID del botón es la letra, pero necesitas manejar 'Enter' y 'Backspace' adecuadamente
+    agregarLetra(button.id); // Usa textContent o innerText según lo que contenga el botón
+ 
+  });
+});
+
+  // Escuchar el evento keydown para todo el documento
+document.addEventListener('keydown', teclasPresionada);
+
+
+
+ // Evento clic en el botón de teclado, animación
+ $(document).ready(function() {//captura botones teclado
+  let botonesTeclado = $(".btn-secondary");
+  botonesTeclado.click(function() {
+    let boton = $(this); // Almacena una referencia al botón
+    boton.addClass("btn-danger");//modifico a rojo
+    setTimeout(function() {
+      boton.removeClass("btn-danger");
+    }, 400); // Quita la clase después de 400ms
+  });
+});
+
   const contenedorFormulario = $("#contenedorFormulario");
   const container = $(".container");
   const nombreFormulario = $("#fname");
@@ -54,24 +76,14 @@ window.addEventListener("DOMContentLoaded", function () {
     // Si el formulario ya se completó, mostrar directamente el juego
     contenedorFormulario.hide();
     container.show();
-    generarCuadricula();
+    /*************HE BORRADO LA FUNCINO GENERAR CUADRICULA TENDREMOS QUE APAÑAR ESTO */
+
   } else {
     // Si es la primera vez que se visita la página, mostrar el formulario
     contenedorFormulario.show();
     container.hide();
   }
-  // Evento clic en el botón de teclado, animación
-  $(document).ready(function() {//captura botones teclado
-    let botonesTeclado = $(".btn-secondary");
-    botonesTeclado.click(function() {
-      console.log("click");
-      let boton = $(this); // Almacena una referencia al botón
-      boton.addClass("btn-danger");//modifico a rojo
-      setTimeout(function() {
-        boton.removeClass("btn-danger");
-      }, 400); // Quita la clase después de 400ms
-    });
-  });
+ 
 
   // Evento clic en el botón de formulario
   botonFormulario.click(function (event) {
@@ -93,6 +105,7 @@ window.addEventListener("DOMContentLoaded", function () {
       textoAlerta.slideDown(700);
     }
   });
+  
 // Función de validación del formulario
 const validarForm = () => {
   // Validar nombre
@@ -138,46 +151,8 @@ const validarForm = () => {
 };
 
 
-  //CUADRICULA DINÁMICA
-  // Función para generar la cuadrícula
-  function generarCuadricula() {
-    //capturar el contenedor donde ira la cuadricula
-    let cuadricula = document.getElementById("cuadricula");
-    cuadricula.innerHTML = ""; //limpiamos el contenedor
-    //recorremos las rows
-    for (let row = 0; row < arrayColums; row++) {
-      let divs = document.createElement("div"); //creamos divs
-      divs.id = "row" + (row + 1); //le añadimos id
-      //recorremos las colums
-      for (let col = 0; col < arrayRows; col++) {
-        let input = document.createElement("input"); //creamos input  arrayColums
-        input.type = "text";
-        input.maxLength = "1"; //máximo de letras dentro de cada input
-        input.className = "cuadrado"; //le atizamos una clase común a todas
-        input.type = "text"; //le añadimos el tipo text
-        input.disabled = true;  //desactivamos los inputs
-        input.id = "input" + (col * arrayColums + (row + 1)); //añadimos id
-        //añadimos dentro de los divs que hemos creado al inicio del form row los input
-        divs.appendChild(input);
-      }
-      //dentro del contenedor capturado del html atizamos los divs con los input dentro
-      cuadricula.appendChild(divs);
-    }
-  }
 
-
-  //capturo los botones virtuales
-  let buttonsVirtuales = document.querySelectorAll('.btn.btn-secondary.m-1');
-  buttonsVirtuales.forEach(function (button) {
-    button.addEventListener('click', function () {
-      let letra = button.id; // Aquí capturas el texto del botón
-      manejarEntrada(letra); // Suponiendo que tienes una función manejarEntrada para manejar tanto teclado físico como virtual
-    });
-  });
-  //capturar teclado normal
-  window.addEventListener("keydown", function (event) {//evento keydown
-    let teclaPresionada = teclasPresionada(event);//guarda la letra presionada lla función teclasPresionada desde donde se captura la tecla
-  });
+  
 
   // INICIO PARTE DE POPUP INSTRUCCIONES
 botonInstrucciones.click(function() {

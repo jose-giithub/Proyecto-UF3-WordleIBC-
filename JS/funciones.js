@@ -1,92 +1,102 @@
 
 
-function validarPalabra() { //abaca curen
-  console.log("palabra", palabra , 'palabra aleatoria' , palabraAleatoria);
- 
-   if (dic.includes(palabra) && palabra === palabraAleatoria) {
-    console.log("existe y es igual" );
-  } else if (dic.includes(palabra)) {
-    console.log("existe" );
-  } else{
-    console.log("no existe");
+
+// Función para agregar letra a la celda correcta
+function agregarLetra(letraPresionada) {
+  console.log("Letra presionada: " + letraPresionada);
+
+  // Ignorar si es Enter o Backspace directamente
+  if (letraPresionada === "Enter") {
+    validarPalabra();
+    return;
+  } else if (letraPresionada === "Backspace") {
+    borrarUltimaLetra();
+    return;
   }
 
+  // Asegurándonos de que la celdaActual no exceda el número de celdas por fila
+  if (celdaActual > 5) {
+    // Si ya estamos en la última celda, no hacer nada o avanzar a la siguiente fila
+    // Aquí podrías implementar la lógica para avanzar a la siguiente fila si es necesario
+    return;
+  }
+
+  const idCeldaActual = `cell${filaActual}-${celdaActual}`;
+  const divActual = document.getElementById(idCeldaActual);
   
+  if (divActual) {
+    divActual.innerText = letraPresionada.toUpperCase();
+    palabra+=letraPresionada;
+    console.log("palabra añadir", palabra);
+    celdaActual++;
+  }
 }
 
+// Función para vefiriicar si el formulario está completo si exite la palabra
 
+function validarPalabra() {
+  console.log("palabra", palabra, 'palabra aleatoria', palabraAleatoria);
 
-// Función para manejar el evento de clic en cada tecla
-function manejarEntrada(letraVirtual) {
-  //  console.log("Tecla válida presionada: " + letraVirtual);
-  //capturo el input actual
-  inputActual = document.getElementById("input" + indiceActual);
-  
-  //**************se se presiona enter 
-  //si ademas de presionar enter el indice es 6 se pasa a la siguiente linea y se desactivan los inputs 1 ,2,3,4,5
-  if (letraVirtual === "Enter" && indiceActual === 6) {
-    //desactivo los inputs
-    for (let i = 1; i <= 5; i++) {
-      let input = document.getElementById("input" + i);
-      input.disabled = true;
-    }
-
-    //calor de la letra
-    console.log('*********pasar a la siguiente linea' ,indiceActual );
-     
-  } else if (letraVirtual === "Enter") {
-    console.log('*********Valido sin pasar  a la siguiente linea' ,indiceActual );
-     validarPalabra(palabra);
+  if (palabra.length !== 5) {
+    console.log("Debe completar las 5 letras antes de presionar Enter.");
+    return;
   }
 
+  if (dic.includes(palabra)) {
+    console.log("La palabra existe en el diccionario.");
+    if (palabra === palabraAleatoria) {
+      console.log("¡Correcto! La palabra es igual a la palabra aleatoria.");
+      // Aquí podrías implementar alguna lógica para manejar el caso de éxito.
+    } else {
+      console.log("La palabra no es la correcta, pero existe en el diccionario.");
+      // Preparar para la siguiente fila
+      prepararSiguienteFila();
+    }
+  } else {
+    console.log("La palabra no existe en el diccionario.");
+    // Puedes optar por permitir al usuario intentarlo nuevamente sin avanzar de fila o forzar el avance de todos modos.
+    prepararSiguienteFila();
+  }
+}
 
-  //si se presiona Backspace borro el valor del input
-  if (letraVirtual === "Backspace") {
-    // let inputActualBobrrar = document.getElementById("input" + indiceActual);
-    // asegurar que no esté en el primer índice
-    if (indiceActual > 1) {
-      indiceActual--; // Mueve hacia atrás el índice para Backspace el valor del input anterior
-      //capturo el input actual y le quito una posición
-      let inputAnterior = document.getElementById("input" + indiceActual);
-      //elimino la letra de la palabra
+function prepararSiguienteFila() {
+  // Deshabilitar la fila actual (opcional)
+  const filaActualDiv = document.getElementById(`fila${filaActual}`);
+  if (filaActualDiv) {
+    filaActualDiv.classList.add("disabled"); // Asegúrate de definir el estilo .disabled en tu CSS
+  }
+
+  // Reiniciar palabra y avanzar a la siguiente fila
+  palabra = "";
+  if (filaActual < 6) { // Asumiendo que tienes un máximo de 6 filas.
+    filaActual++;
+    celdaActual = 1;
+  } else {
+    console.log("Juego terminado. No quedan más intentos.");
+    // Aquí puedes implementar lógica para finalizar el juego o reiniciarlo.
+  }
+}
+
+function borrarUltimaLetra() {
+  if (celdaActual > 1 || (filaActual > 1 && celdaActual === 1)) {
+      if (celdaActual === 1) {
+          // Ajustar si tienes lógica para manejar múltiples filas
+          filaActual -= 1;
+          celdaActual = 5; // O el número máximo de celdas por fila que tienes
+      } else {
+          celdaActual--;
+      }
+
+      const idCeldaActual = `cell${filaActual}-${celdaActual}`;
+      const divActual = document.getElementById(idCeldaActual);
+      if (divActual) {
+          divActual.innerText = "";
+      }
+      // Actualizar la palabra después de ajustar la celda actual
       palabra = palabra.slice(0, -1);
-      console.log(palabra, "*****borro el valor del input");
-
-      //si no esta vacio lo borro
-      if (inputAnterior.value != "") {
-        //inputAnterior &&
-        //para que se pueda Backspace
-        inputAnterior.disabled = true;
-        inputAnterior.value = ""; // Limpia el valor del input anterior si no está vacío
-      }
-    }
-    //si indice es 5 o menor activo los inputs
-    if (indiceActual <= 5 || indiceActual <= 10) {
-      console.log("activo los inputs");
-      liniaCompleta = false;
-    }
-  }
-  //si indice es 5 o 10 o 20 o 25, sera final de linia y desactivara los inputs para que no se pueda escribir mas
-  if (indiceActual > 5 || indiceActual > 10) {
-    console.log("desactivo los inputs");
-    liniaCompleta = true;
-  }
-  //si no esta completa la linia permito añadir letras
-  if (!liniaCompleta) {
-    // console.log("num input:", indiceActual);
-
-    //si el input actual no es enter o Backspace añado el valor al input --> la letra
-    if (letraVirtual !== "Enter" && letraVirtual !== "Backspace") {
-      if (inputActual) {
-        inputActual.value = letraVirtual;
-        palabra += inputActual.value;
-        indiceActual++;
-      }
-    }
+      console.log("palabra borrar", palabra);
   }
 }
-
-
 
 /**
  * Capturar teclado
@@ -132,12 +142,9 @@ function teclasPresionada(event) {
   ];
   // Convertir a minúsculas para hacer la comparación y aceptar Enter y Backspace como están
   if (
-    letrasValidas.includes(teclaPresionada.toLowerCase()) ||
-    teclaPresionada === "Enter" ||
-    teclaPresionada === "Backspace"
-  ) {
-    console.log("Tecla válida presionada: " + event.key);
-    manejarEntrada(teclaPresionada);
+    letrasValidas.includes(teclaPresionada.toLowerCase()) || teclaPresionada === "Enter" || teclaPresionada === "Backspace") {
+    //console.log("Tecla válida presionada: " + event.key);
+    agregarLetra(teclaPresionada);
     // return event.key;
   } else {
     // console.log("Tecla no válida presionada: " + event.key);
@@ -145,42 +152,8 @@ function teclasPresionada(event) {
   }
 }
 
-
 function numeroAleatorio() {
   let numeroAleatorio = Math.random();
   let numeroFinal = Math.floor(numeroAleatorio * 11033);
   return numeroFinal;
 }
-
-/**
- * Validar formulario
- * @param {*} nombreFormulario
- * @returns
- */
-function validarForm(nombreFormulario) {
-  let nombre = nombreFormulario.val(); //capturo el valor del campo
-  //quito espacios
-  nombre.trim();
-  //********VALIDAR CAMPO NOMBRE */
-  if (nombre == "") {
-    //si esta vació
-    console.log("Nombre vacio");
-    //muéstrame el mensaje de error
-    textoAlerta.slideDown(700);
-  }
-  setTimeout(function () {
-    textoAlerta.slideUp(700);
-    return false;
-  }, 2000);
-
-  //********VALIDAR CAMPO APELLIDOS */
-  //********VALIDAR CAMPO CORREO */
-  //********VALIDAR CAMPO TELÉFONO */
-
-  if (nombre != "") {
-    // todo los campos están bien
-    return true;
-  }
-};
-
-

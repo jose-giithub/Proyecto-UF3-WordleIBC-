@@ -18,7 +18,17 @@ background-color:  rgb(189, 194, 142);;
     margin: auto; /* Centra el contenedor en la página */
   }
   
-  .cuadrado {
+  /*ESTILO CUADRICULA DINÁMICA */
+#cuadricula {
+    display: flex;
+    width: 430px; /* Tamaño total de la cuadrícula (5 * 80px) */
+    height: 450px; /* Tamaño total de la cuadrícula (5 * 80px) */
+    justify-content: center;
+    align-items: center;
+    margin: auto; /* Centra el contenedor en la página */
+  }
+  
+  .cell {
     width: 70px; /* Ajusta el ancho según tus preferencias */
     height: 70px; /* Ajusta la altura según tus preferencias */
     text-align: center;
@@ -27,103 +37,24 @@ background-color:  rgb(189, 194, 142);;
     text-transform: uppercase;
     color: #000;
     border: solid 3px black;
-    border-radius: 10px;
     margin: 1px 1px 1px 1px;
   }
 
   
-  /* Estilos de los inputs dentro de la cuadricula */
-  input{
-    width: 80px;
-    height: 80px;
-    text-align: center;
-    background-color:  #ffdab9;
-    font-size: 60px;
-    text-transform: uppercase;
-    color: #000;
+/* DESAVILITAR CELDAS */
+
+.disabled .cell {
+    background-color: #e0e0e0; /* Gris claro, por ejemplo */
+    pointer-events: none; /* Evitar clics en esta fila */
+    opacity: 0.5; /* Hacer las celdas semitransparentes */
+    cursor: not-allowed; /* Change cursor to indicate non-interactivity */
+
   }
-  /*FINAL ESTILO CUADRICULA DINÁMICA */
+  
  
-  .instructions-card {
-    background-color: white;
-    border-radius: 10px;
-    padding: 20px;
-    max-width: 400px;
-    margin: auto;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    font-family: Arial, sans-serif;
-}
 
-.close-button {
-    float: right;
-    cursor: pointer;
-}
 
-.title {
-    text-align: center;
-    font-size: 24px;
-    margin: 10px 0;
-    color: #333;
-    font-weight: bold;
-}
 
-.color-explanation {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-}
-
-.color-box {
-    width: 30px;
-    height: 30px;
-    display: inline-block;
-    margin-right: 10px;
-    font-size: 20px;
-    text-align: center;
-    line-height: 30px;
-    color: white;
-}
-
-.color-box.green {
-    background-color: #31a322;
-}
-
-.color-box.yellow {
-    background-color: #9f8822;
-}
-
-.color-box.grey {
-    background-color: #f3f3f3;
-    color: black;
-}
-
-.play-button {
-    background-color: #31a322;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    display: block;
-    width: 100%;
-    margin-top: 20px;
-}
-
-.play-button:hover {
-    background-color: #259a22;
-}
-
-.instructions-link {
-    display: block;
-    text-align: center;
-    margin-top: 20px;
-    color: #0000EE;
-    text-decoration: none;
-}
-
-.instructions-link:hover {
-    text-decoration: underline;
-}
  /* FINAL ESTILOS INSTRUCCIONES  */
  /* ESTILOS TECLADO VIRTUAL */
 
