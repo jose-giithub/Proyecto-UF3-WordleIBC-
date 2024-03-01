@@ -69,10 +69,10 @@ function validarPalabra() {
     console.log("La palabra no existe en el diccionario.");
     window.alert("La palabra no existe");
  //llamo a la función que paso a la siguiente fila
- verificarLetras(palabra);
-     prepararSiguienteFila();
+ //verificarLetras(palabra);
+    // prepararSiguienteFila();
   }
-  localStorage.setItem("intentos", intentos);
+
 }
 
 //verificar letras
@@ -86,6 +86,7 @@ function validarPalabra() {
 function verificarLetras(palabraIngresada) {
   //cada vez que entra la función sumo  a intentos
   intentos += 1;
+  localStorage.setItem("intentos", intentos);
   console.log("Intentos: ", intentos);
   //recorro la palabra ingresada, guardo la letra y el id de la celda actual
   for (let i = 0; i < palabraIngresada.length; i++) {
@@ -160,6 +161,10 @@ function prepararSiguienteFila() {
     celdaActual = 1;
     //si es la ultima fila mensaje y desactivo el teclado
   } else {
+    partidasPerdidas += 1;
+    //añado a local stroage
+ 
+    localStorage.setItem("partidasPerdidas", partidasPerdidas);
     console.log("Juego terminado. No quedan más intentos.");
     alert("Juego terminado. No quedan más intentos.");
     desactivarEntradaTeclado(); 

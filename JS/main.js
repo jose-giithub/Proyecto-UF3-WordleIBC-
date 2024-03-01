@@ -8,6 +8,7 @@ let palabraAleatoria;
 let palabra = "";
 let partidasGanadas = 0;
 let intentos = 0;
+let partidasPerdidas=0;
 
 /********Libreria con los datos del uer */
 var datosUser = {
@@ -187,11 +188,12 @@ botonEstadisticas.click(function() {
   const telefono = localStorage.getItem("telefono");
   const partidasJugadas = localStorage.getItem("partidasJugadas");
   const partidasGanadas = localStorage.getItem("partidasGanadas");
-  const partidasPerdidas = localStorage.getItem("partidasPerdidas");
+  const partidasPerdidasLocalStorage = localStorage.getItem("partidasPerdidas");
   const porcentajeAciertos = localStorage.getItem("porcentajeAciertos");
   const palabrasAdivinadas = localStorage.getItem("palabrasAdivinadas");
   const palabrasFallidas = localStorage.getItem("palabrasFallidas");
   const letrasAcertadas = localStorage.getItem("letrasAcertadas");
+  const intentosLocalStorage = localStorage.getItem("intentos");
 
   const contenidoPopup = `
     <br><br><br><br>
@@ -199,14 +201,19 @@ botonEstadisticas.click(function() {
     <p>Tus apellidos: ${apellidos}</p>
     <p>Tu correo electrónico: ${correo}</p>
     <p>Tu teléfono: ${telefono}</p>
-    <p>Partidas jugadas: ${partidasJugadas}</p>
     <p>Partidas ganadas: ${partidasGanadas}</p>
-    <p>Partidas perdidas: ${partidasPerdidas}</p>
-    <p>Porcentaje de aciertos: ${porcentajeAciertos}%</p>
+    <p>Partidas perdidas: ${partidasPerdidasLocalStorage}</p>
+    
+    <p>Intentos: ${intentosLocalStorage}</p>
+  `;
+  /*
+   <p>Partidas jugadas: ${partidasJugadas}</p>
+   <p>Porcentaje de aciertos: ${porcentajeAciertos}%</p>
     <p>Palabras adivinadas: ${palabrasAdivinadas}</p>
     <p>Palabras fallidas: ${palabrasFallidas}</p>
     <p>Letras acertadas: ${letrasAcertadas}</p>
-  `;
+
+   */
 
   const popupEstadisticas = new Popup({
     id: "color-info",
