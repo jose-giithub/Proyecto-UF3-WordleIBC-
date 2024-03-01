@@ -32,10 +32,8 @@ document.querySelectorAll('.btn.btn-secondary.m-1').forEach(function (button) {
   });
 });
 
-  // Escuchar el evento keydown para todo el documento
+  // Escuchar la tecla presionada
 document.addEventListener('keydown', teclasPresionada);
-
-
 
  // Evento clic en el botón de teclado, animación
  $(document).ready(function() {//captura botones teclado
@@ -100,7 +98,7 @@ document.addEventListener('keydown', teclasPresionada);
 
       contenedorFormulario.hide(); // Ocultar el formulario si la validación es exitosa
       container.show(); // Mostrar el div container cuando el formulario se oculta
-      generarCuadricula();
+
     } else {
       // Mostrar mensaje de error si la validación falla
       textoAlerta.text("Por favor, completa todos los campos correctamente.");
