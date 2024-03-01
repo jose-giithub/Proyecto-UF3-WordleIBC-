@@ -42,19 +42,16 @@ background-color:  rgb(189, 194, 142);;
 
   
 /* VERIFICAR LETRAS */
-.correcta {
+.perfect {
     background-color: #6aaa64; /* Verde para letras correctas */
   }
   
-  .presente {
-    background-color: #c9b458; /* Amarillo para letras presentes en la palabra pero en posición incorrecta */
+  .coincide {
+    background-color: #c9b458; /* Amarillo para letras coincides en la palabra pero en posición incorrecta */
   }
 
-  .verde {
-    background-color: #6aaa64; /* Un tono de verde para indicar el acierto */
-  }
   
-  .ausente {
+  .noCoincide {
     background-color: #787c7e; /* Un tono de gris */
   }
 

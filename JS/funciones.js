@@ -1,71 +1,92 @@
 // Función para agregar letra a la celda correcta
+/**
+ * Funcion que agrega letra a la celda correcta
+ * @param {*} letraPresionada
+ * @returns
+ */
 function agregarLetra(letraPresionada) {
-  console.log("Letra presionada: " + letraPresionada);
-
-  // Ignorar si es Enter o Backspace directamente
+  // si presionan enter que se valide la linia actual
   if (letraPresionada === "Enter") {
     validarPalabra();
     return;
-  } else if (letraPresionada === "Backspace") {
+    //si fuera borrar llamar a la funcion que borra las letras
+  }
+  if (letraPresionada === "Backspace") {
     borrarUltimaLetra();
     return;
   }
 
   // Asegurándonos de que la celdaActual no exceda el número de celdas por fila
+  //si es mayor a 5 no añadir mas letras
   if (celdaActual > 5) {
-    // Si ya estamos en la última celda, no hacer nada o avanzar a la siguiente fila
-    // Aquí podrías implementar la lógica para avanzar a la siguiente fila si es necesario
     return;
   }
-
+  //guardar el id de la celda actual
   const idCeldaActual = `cell${filaActual}-${celdaActual}`;
- 
+  //capturo el input actual
   const inputActual = document.getElementById(idCeldaActual);
- 
+
   if (inputActual) {
+    //si existe el input le atizo la letra
     inputActual.value = letraPresionada.toUpperCase();
+    //pongo la letra en un str que sera la palabra
     palabra += letraPresionada.toLowerCase();
-    console.log("palabra añadir", palabra);
+    //paso al siguiente input
     celdaActual++;
   }
 }
-// Función para vefiriicar si el formulario está completo si exite la palabra
 
+/**
+ *  Función que verifica la palabra 
+ */
 function validarPalabra() {
-  console.log("palabra", palabra, "palabra aleatoria", palabraAleatoria);
-
+  //si es mas peque de  mensage
   if (palabra.length !== 5) {
     console.log("Debe completar las 5 letras antes de presionar Enter.");
     return;
   }
-
+//si la palabra existe en el diccionario
   if (dic.includes(palabra)) {
     console.log("La palabra existe en el diccionario.");
+    //ademas de existir es igual a la palabra aleatoria
     if (palabra === palabraAleatoria) {
       console.log("¡Correcto! La palabra es igual a la palabra aleatoria.");
-      window.alert("|Correcto!")
-       marcarPalabra();
-      // Aquí podrías implementar alguna lógica para manejar el caso de éxito.
+      window.alert("|Correcto!");
+      palabraCorrecta();
+      // la palabra existe en el diccionario pero no es igual a la aleatoria
     } else {
       console.log(
-        "La palabra no es la correcta, pero existe en el diccionario.");
-      window.alert("La palabra no es la correcta")
-      //busco coincidencia entre la palabar dada y la aleatoria
-      // Preparar para la siguiente fila
+        "La palabra no es la correcta, pero existe en el diccionario."
+      );
+      window.alert("La palabra no es la correcta");
+      //llamo a la funcion que buscara coincidencia entre la palabar dada y la aleatoria
       verificarLetras(palabra);
+      //llamo a la función que paso a la siguiente fila
       prepararSiguienteFila();
     }
+    //la palabra no existe en el diccionario
   } else {
     console.log("La palabra no existe en el diccionario.");
-    window.alert("La palabra no existe")
-    verificarLetras(palabra);
-    // Puedes optar por permitir al usuario intentarlo nuevamente sin avanzar de fila o forzar el avance de todos modos.
-   // prepararSiguienteFila();
+    window.alert("La palabra no existe");
+ //llamo a la función que paso a la siguiente fila
+ verificarLetras(palabra);
+     prepararSiguienteFila();
   }
 }
 
 //verificar letras
+/**
+ * Función que valida la letra de la palabra dada con la aleatoria y si coincide la marca
+ * Si la letra está en la palabra y en la posición correcta, la marcamos en verde
+ * Si la letra está en la palabra pero no en la posición correcta, la marcamos en amarillo
+ * Si la letra no está en la palabra, la marcamos en gris
+ * @param {*} palabraIngresada 
+ */
 function verificarLetras(palabraIngresada) {
+  //cada vez que entra la función sumo  a intentos
+  intentos += 1;
+  console.log("Intentos: ", intentos);
+  //recorro la palabra ingresada, guardo la letra y el id de la celda actual
   for (let i = 0; i < palabraIngresada.length; i++) {
     const letra = palabraIngresada[i];
     const idCeldaActual = `cell${filaActual}-${i + 1}`;
@@ -73,70 +94,90 @@ function verificarLetras(palabraIngresada) {
 
     // Si la letra está en la palabra y en la posición correcta, la marcamos en verde
     if (letra === palabraAleatoria[i]) {
-      celdaActual.classList.add("correcta"); // Agrega clase para letra en posición correcta
+      celdaActual.classList.add("perfect"); // Agrega clase para letra en posición correcta
     }
     // Si la letra está en la palabra pero no en la posición correcta, la marcamos en amarillo
     else if (palabraAleatoria.includes(letra)) {
-      celdaActual.classList.add("presente"); // Agrega clase para letra presente pero en posición incorrecta
+      celdaActual.classList.add("coincide"); // Agrega clase para letra noCoincide pero en posición incorrecta
+    //no concede las letras morco en gris
     } else {
-      celdaActual.classList.add("ausente");
+      celdaActual.classList.add("noCoincide");
     }
   }
 }
-function marcarPalabra() {
-  // Asumiendo que 'color' es una clase que ya tienes definida en tu CSS
+/**
+ * Si la palabra dada es igual a la aleatoria marca las letras en verde y desactiva la entrada de teclado
+ */
+function palabraCorrecta() {
+  //sumo uno a las partidas ganadas
+  partidasGanadas += 1;
+  console.log("Partidas ganadas: ", partidasGanadas);
+  //pito todas las letras en verde
   for (let i = 1; i <= 5; i++) {
     const idCeldaActual = `cell${filaActual}-${i}`;
     const celdaActual = document.getElementById(idCeldaActual);
 
     if (celdaActual) {
-      celdaActual.classList.add('correcta');
+      celdaActual.classList.add("perfect");
     }
   }
-  
   // Desactivar la entrada de teclado
   desactivarEntradaTeclado();
 }
-
+/**
+ * Función que desactiva el teclado cuando ganas
+ */
 function desactivarEntradaTeclado() {
   // Elimina el event listener de las teclas presionadas
-  document.removeEventListener('keydown', teclasPresionada);
-  
-  // Además, si tienes botones en pantalla para la entrada de teclado virtual,
-  // también deberías deshabilitarlos.
-  const botonesTeclado = document.querySelectorAll('.btn.btn-secondary.m-1');
+  document.removeEventListener("keydown", teclasPresionada);
+
+//capturo todos los teclados
+  const botonesTeclado = document.querySelectorAll(".btn.btn-secondary.m-1");
+  //los desactvo
   botonesTeclado.forEach(function (button) {
     button.disabled = true; // Deshabilitar los botones del teclado virtual
   });
 }
 
+/**
+ * Función que prepara la siguiente fila y desactiva la anterior para que no se peuda borrar
+ * NO FUNCIONA
+ */
 function prepararSiguienteFila() {
-  console.log("Preparando para la siguiente fila.");
-  
+  console.log("entra en sigiente fila");
   // Deshabilitar la fila actual
   const filaActualDiv = document.getElementById(`fila${filaActual}`);
   console.log(filaActualDiv);
-  if (filaActualDiv) {
-    filaActualDiv.classList.add("disabled"); // Añade la clase .disabled al contenedor de la fila
-    let inputs = filaActualDiv.querySelectorAll("input.cell");
-    inputs.forEach((input) => {
-      input.disabled = true; // Deshabilita los inputs de la fila actual
-    });
-  }
+ 
+  // if (filaActualDiv) {
+  //   filaActualDiv.classList.add("disabled"); // Añade la clase .disabled al contenedor de la fila
+  //   let inputs = filaActualDiv.querySelectorAll("input.cell");
+  //   inputs.forEach((input) => {
+  //     input.disabled = true; // Deshabilita los inputs de la fila actual
+  //   });
+  // }
   // Reiniciar palabra y avanzar a la siguiente fila
   palabra = "";
+  //controlo que no sea la ultima fila
   if (filaActual < 6) {
     filaActual++;
     celdaActual = 1;
+    //si es la ultima fila mensaje y desactivo el teclado
   } else {
     console.log("Juego terminado. No quedan más intentos.");
+    alert("Juego terminado. No quedan más intentos.");
+    desactivarEntradaTeclado(); 
   }
 }
 
+/**
+ * Función que borra las letras
+ */
 function borrarUltimaLetra() {
-  if (celdaActual > 1 || (filaActual > 1 && celdaActual === 1)) {
+  //si celda actual es mas de la primera
+  if (celdaActual > 1) {
+    
     if (celdaActual === 1) {
-      // Ajustar si tienes lógica para manejar múltiples filas
       filaActual -= 1;
       celdaActual = 5; // O el número máximo de celdas por fila que tienes
     } else {

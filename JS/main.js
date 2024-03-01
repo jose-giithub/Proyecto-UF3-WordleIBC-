@@ -6,6 +6,8 @@ let numAleatorio;
 let palabraAleatoria;
 //Guardar todas las letras que se escriben
 let palabra = "";
+let partidasGanadas = 0;
+let intentos = 0;
 
 /********Libreria con los datos del uer */
 var datosUser = {
