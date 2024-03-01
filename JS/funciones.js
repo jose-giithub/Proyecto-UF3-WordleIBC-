@@ -149,13 +149,7 @@ function prepararSiguienteFila() {
   const filaActualDiv = document.getElementById(`fila${filaActual}`);
   console.log(filaActualDiv);
  
-  // if (filaActualDiv) {
-  //   filaActualDiv.classList.add("disabled"); // Añade la clase .disabled al contenedor de la fila
-  //   let inputs = filaActualDiv.querySelectorAll("input.cell");
-  //   inputs.forEach((input) => {
-  //     input.disabled = true; // Deshabilita los inputs de la fila actual
-  //   });
-  // }
+
   // Reiniciar palabra y avanzar a la siguiente fila
   palabra = "";
   //controlo que no sea la ultima fila
@@ -176,18 +170,23 @@ function prepararSiguienteFila() {
 function borrarUltimaLetra() {
   //si celda actual es mas de la primera
   if (celdaActual > 1) {
-    
+    //resto uno a celda actual
     if (celdaActual === 1) {
       filaActual -= 1;
-      celdaActual = 5; // O el número máximo de celdas por fila que tienes
+      celdaActual = 5; //el número máximo de celdas por fila 
     } else {
+      //retrocedo una posición
       celdaActual--;
     }
-
+    //capturo el id de la celda actual
     const idCeldaActual = `cell${filaActual}-${celdaActual}`;
+    //capturo el input actual
     const inputActual = document.getElementById(idCeldaActual);
+    //si existe el input le borro la letra
     if (inputActual) {
+      //borro el texto del input
       inputActual.value = "";
+      //borro la letra de la palabra
       palabra = palabra.slice(0, -1);
       console.log("palabra borrar", palabra);
     }
@@ -251,6 +250,10 @@ function teclasPresionada(event) {
   }
 }
 
+/**
+ * Función que da un num aleatorio enjtre  y 11033
+ * @returns numero aleatorio
+ */
 function numeroAleatorio() {
   let numeroAleatorio = Math.random();
   let numeroFinal = Math.floor(numeroAleatorio * 11033);
