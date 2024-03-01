@@ -41,15 +41,16 @@ background-color:  rgb(189, 194, 142);;
   }
 
   
-/* DESAVILITAR CELDAS */
-
-.disabled .cell {
-    background-color: #e0e0e0; /* Gris claro, por ejemplo */
-    pointer-events: none; /* Evitar clics en esta fila */
-    opacity: 0.5; /* Hacer las celdas semitransparentes */
-    cursor: not-allowed; /* Change cursor to indicate non-interactivity */
-
+/* VERIFICAR LETRAS */
+.correcta {
+    background-color: #6aaa64; /* Verde para letras correctas */
   }
+  
+  .presente {
+    background-color: #c9b458; /* Amarillo para letras presentes en la palabra pero en posición incorrecta */
+  }
+
+
   
  
 
