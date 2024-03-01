@@ -43,7 +43,7 @@ background-color:  rgb(189, 194, 142);;
     color: #000;
   }
   /*FINAL ESTILO CUADRICULA DINÁMICA */
-  /* ESTILOS INSTRUCCIONES  */
+ 
   .instructions-card {
     background-color: white;
     border-radius: 10px;
@@ -124,3 +124,14 @@ background-color:  rgb(189, 194, 142);;
 .instructions-link:hover {
     text-decoration: underline;
 }
+ /* FINAL ESTILOS INSTRUCCIONES  */
+ /* ESTILOS TECLADO VIRTUAL */
+
+  .btn {
+    font-size: 20px;
+    line-height: 50px;
+    text-align: center;
+    width: 100px;
+    height: 50px;
+  }
+

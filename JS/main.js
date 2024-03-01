@@ -60,6 +60,18 @@ window.addEventListener("DOMContentLoaded", function () {
     contenedorFormulario.show();
     container.hide();
   }
+  // Evento clic en el botón de teclado, animación
+  $(document).ready(function() {//captura botones teclado
+    let botonesTeclado = $(".btn-secondary");
+    botonesTeclado.click(function() {
+      console.log("click");
+      let boton = $(this); // Almacena una referencia al botón
+      boton.addClass("btn-danger");//modifico a rojo
+      setTimeout(function() {
+        boton.removeClass("btn-danger");
+      }, 400); // Quita la clase después de 400ms
+    });
+  });
 
   // Evento clic en el botón de formulario
   botonFormulario.click(function (event) {
